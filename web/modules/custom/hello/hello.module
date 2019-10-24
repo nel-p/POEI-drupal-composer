@@ -1,0 +1,18 @@
+<?php
+  function hello_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+    switch ($route_name) {
+
+      case 'help.page.hello':
+        return '<p>' . t('Hello help page !!!!') . '</p>';
+    }
+  }
+
+  function hello_cron() {
+
+    \Drupal::messenger()->addMessage(t('Hello cron !!'));
+  }
+
+  function hello_user_login(\Drupal\user\UserInterface $account) {
+
+    \Drupal::messenger()->addMessage(t('Welcom %name!', ['%name' => $account->getAccountName()]));
+  }
