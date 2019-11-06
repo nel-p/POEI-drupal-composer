@@ -1,0 +1,18 @@
+hello.task1:
+  title: 'Hello!'
+  route_name: hello.hello
+  base_route: hello.hello
+  weight: 1
+
+hello.task2:
+  title: 'List'
+  route_name: hello.node
+  base_route: hello.hello
+  weight: 2
+
+hello.task3:
+  title: 'Connections'
+  route_name: hello.userStats
+  base_route: entity.user.canonical
+  weight: 3
+

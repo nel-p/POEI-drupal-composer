@@ -1,0 +1,5 @@
+name: Hello
+description: First module test say hello.
+package: Training
+type: module
+core: '8.x'

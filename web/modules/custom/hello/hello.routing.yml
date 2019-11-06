@@ -1,0 +1,24 @@
+hello.hello:
+  path: '/hello'
+  defaults:
+    _title: 'Hello'
+    _controller: '\Drupal\hello\Controller\HelloController::content'
+  requirements:
+    _access: 'TRUE'
+
+hello.node:
+  path: '/hello/node-list/{nodeType}'
+  defaults:
+    _title: 'Nodes listing'
+    _controller: '\Drupal\hello\Controller\NodeListingController::content'
+    nodeType: ''
+  requirements:
+    _access: 'TRUE'
+
+hello.userStats:
+  path: '/user/{user}/statistics'
+  defaults:
+    _title: 'Statistics'
+    _controller: '\Drupal\hello\Controller\HelloUserStatsController::content'
+  requirements:
+    _access: 'TRUE'
