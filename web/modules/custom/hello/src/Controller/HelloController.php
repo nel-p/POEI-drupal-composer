@@ -7,11 +7,9 @@ use Drupal\Core\Controller\ControllerBase;
 class HelloController extends ControllerBase {
 
   public function content() {
-    $message = $this->t('Hello @name !', [
-      '@name' => $this->currentUser()->getDisplayName()
-    ]);
+    $name = $this->currentUser()->getDisplayName();
 
-    return ['#markup' => $message];
+    return ['#markup' => t('Hello %name !!!', ['%name' => $name])];
   }
 
 }
