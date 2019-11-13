@@ -3,6 +3,8 @@
 namespace Drupal\hello\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
 
 
 /**
@@ -26,6 +28,10 @@ class SessionBlock extends BlockBase {
       '#markup' => $this->t('They are %n actives session !!!', ['%n' => $n]),
       '#cache' => ['max-age' => '0'],
     ];
+  }
+
+  protected function blockAccess(AccountInterface $account) {
+    return AccessResult::allowedIfHasPermission($account, 'access_hello');
   }
 
 }

@@ -42,3 +42,10 @@ function hello_update_8001 () {
   $schema = Database::getConnection()->schema();
   $schema->addField('hello_user_statistics', 'action', ['type' => 'int', 'size' => 'tiny']);
 }
+
+/**
+ * Implement hook_uninstall().
+ */
+function hello_uninstall () {
+  \Drupal::state()->delete('hello_form_submission_time');
+}

@@ -12,6 +12,13 @@ function hello_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route
 function hello_cron() {
 
   \Drupal::messenger()->addMessage(t('Hello cron !!'));
+
+  $purge_days_number = \Drupal::config('hello.settings')->get('purge_days_number');
+  if ($purge_days_number !=0) {
+    \Drupal::database()->delete('hello_user_statistics')
+      ->condition('time', REQUEST_TIME - $purge_days_number * (24 * 3600), '<')
+      ->execute();
+  }
 }
 
 function hello_user_login(\Drupal\user\UserInterface $account) {
@@ -44,4 +51,15 @@ function hello_user_delete(\Drupal\user\UserInterface $account) {
   \Drupal::database()->delete('hello_user_statistics')
     ->condition('uid', $account->id())
     ->execute();
+}
+
+
+function hello_theme($existing, $type, $theme, $path) {
+  return [
+    'hello' => [
+      'template' => 'hello',
+      // 'variables' => ['data' => NULL],
+      'variables' => ['userName' => NULL, 'countLog' => NULL],
+    ],
+  ];
 }

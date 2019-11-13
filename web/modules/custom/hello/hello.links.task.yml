@@ -16,3 +16,9 @@ hello.task3:
   base_route: entity.user.canonical
   weight: 3
 
+hello.task4:
+  title: 'Calculator'
+  route_name: hello.form
+  base_route: hello.hello
+  weight: 4
+
