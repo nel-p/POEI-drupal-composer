@@ -32,8 +32,9 @@ class HelloAccessCheck implements AccessCheckInterface {
       $createdDate = $account->getAccount()->created;
       // $currentDate = REQUEST_TIME;
       $currentDate = $this->time->getCurrentTime();
+      $param = $route->getRequirement('_access_hello');
 
-      if ( ($currentDate - $createdDate) > (48*3600) ) {
+      if ( ($currentDate - $createdDate) > ($param*3600) ) {
         $access = AccessResult::allowed()->cachePerUser();
       }
     }
