@@ -1,0 +1,9 @@
+access_hello:
+  title: 'Acces hello'
+  description: 'Access to active sessions block'
+  restrict access: 'true'
+
+administer_hello:
+  title: 'Administer hello'
+  description: 'Access to admin config'
+  restrict access: 'true'
