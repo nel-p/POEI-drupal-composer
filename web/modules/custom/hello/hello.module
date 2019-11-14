@@ -63,3 +63,35 @@ function hello_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+
+function hello_form_user_admin_settings_alter(&$form, &$form_state, $form_id) {
+  $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+  unset($roles['anonymous']);
+  $options = [];
+  foreach ($roles as $role) {
+    $options [$role->id()] = $role->label();
+  }
+
+  $form['user_stat'] = [
+    '#type' => 'details',
+    '#open' => 'TRUE',
+    '#title' => t('Choose roles to track'),
+    '#weight' => -1,
+
+    'options' =>[
+      '#type' => 'checkboxes',
+      '#options' => $options,
+      '#default_value' => \Drupal::config('hello.settings')->get('user_stat_roles'),
+    ],
+  ];
+
+  $form['#submit'][] = 'hello_user_admin_settings_form_submit';
+}
+
+function hello_user_admin_settings_form_submit(&$form, &$form_state) {
+  $options = $form_state->getValue('options');
+  \Drupal::configFactory()->getEditable('hello.settings')
+    ->set('user_stat_roles', $options)
+    ->save();
+}
