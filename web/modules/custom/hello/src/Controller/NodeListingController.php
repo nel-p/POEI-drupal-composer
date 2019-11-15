@@ -16,8 +16,8 @@ class NodeListingController extends ControllerBase {
       $url = new Url('hello.node', ['nodetype' => $node_type->id()]);
       $node_type_link = new Link($node_type->label(), $url);
       $node_type_items[] = $node_type_link;
-    }
 
+    }
     $node_type_list = [
       '#theme' => 'item_list',
       '#items' => $node_type_items,
