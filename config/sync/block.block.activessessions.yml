@@ -1,0 +1,20 @@
+uuid: ec8afcb9-90e2-45e7-976d-8c0175302798
+langcode: en
+status: true
+dependencies:
+  module:
+    - hello
+  theme:
+    - bartik
+id: activessessions
+theme: bartik
+region: sidebar_second
+weight: -6
+provider: null
+plugin: hello_session_block
+settings:
+  id: hello_session_block
+  label: 'Actives sessions'
+  provider: hello
+  label_display: visible
+visibility: {  }
