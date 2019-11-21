@@ -107,3 +107,9 @@ function hello_user_admin_settings_form_submit(&$form, &$form_state) {
     ->set('user_stat_roles', $options)
     ->save();
 }
+
+function hello_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'node_article_form') {
+    $form['revision_log']['#access']= FALSE;
+  }
+}
